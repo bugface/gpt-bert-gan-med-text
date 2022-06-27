@@ -1,0 +1,19 @@
+Continue Research Plan
+
+1. GPT-BERT-GAN for medical text generation
+background:
+current text generation using GPT for clinical notes is formulated as a conditional generation where we use prompts from MIMIC-III (10-15 words) to guide SynGatorTron models to generate the rest of the text.  Sometimes, the generated text is out of scope which means it does not hold clinical meaning, and sometimes it is just copy-paste from memory.  Aiming to generate more versatile clinical notes in a more controllable way, we proposed using the generative adversarial method which is frequently used in the image generation domain. 
+
+Plan:
+GPT is used as a generator and BERT is used as a discriminator.  
+step1: develop a framework using the general gpt-345m and bert-345m model;
+step2: transfer domain to clinical using syngatortron-345m and gatortron-345m models to test whether the medical text generation is valid
+step3: scale-up models, try to adopt model parallel or deepspeed strategy to adopt syngatortron-5b and gatortron-9b models (engineering challenge)
+
+
+2. medical text to the medical template (e.g., SQL/structure tables/computable phenotypes) to assist quick medical information extraction and complicated requirements from clinical narratives
+background:
+Traditional medical information extraction involves several steps including but not limited to NER, relation extraction, and concept normalization. Therefore, we need to develop a pipeline to pipe the clinical text through several models and processes before we identify the key medical information. And if we want some complicated information like text2sql to generate a query for insurance companies to estimate how much they will spend out on patient X over Y timeline automatically. Or generate clinical trial eligibility criteria from notes directly for the computable phenotypes.
+
+plan:
+again, we will seek gpt-bert gan style first and will also explore encoder-decoder architectures like T5 or BRAT directly as well.
